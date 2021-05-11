@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>04.Model2MVCShop</name>
+	<name>04.Model2MVCShop(Business Logic,MyBatis Spring)</name>
 	<comment></comment>
 	<projects>
 		<project>ojdbc14</project>

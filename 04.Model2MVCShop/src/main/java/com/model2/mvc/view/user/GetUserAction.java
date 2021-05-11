@@ -14,10 +14,10 @@ public class GetUserAction extends Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String userId=request.getParameter("userId");
+		String userId = request.getParameter("userId");
 		
-		UserService userService=new UserServiceImpl();
-		User user=userService.getUser(userId);
+		UserService userService = new UserServiceImpl();
+		User user = userService.getUser(userId);
 		
 		request.setAttribute("user", user);
 		

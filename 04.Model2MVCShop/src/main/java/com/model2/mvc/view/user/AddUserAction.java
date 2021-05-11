@@ -14,7 +14,7 @@ public class AddUserAction extends Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		User user=new User();
+		User user = new User();
 		user.setUserId(request.getParameter("userId"));
 		user.setPassword(request.getParameter("password"));
 		user.setUserName(request.getParameter("userName"));
@@ -25,7 +25,7 @@ public class AddUserAction extends Action {
 		
 		System.out.println("AddUserAction ::"+user);
 		
-		UserService userService=new UserServiceImpl();
+		UserService userService = new UserServiceImpl();
 		userService.addUser(user);
 		
 		return "redirect:/user/loginView.jsp";

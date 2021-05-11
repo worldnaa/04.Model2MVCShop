@@ -13,10 +13,10 @@ public class CheckDuplicationAction extends Action{
 	@Override
 	public String execute(HttpServletRequest request,	HttpServletResponse response) throws Exception {
 
-		String userId=request.getParameter("userId");
+		String userId = request.getParameter("userId");
 		
-		UserService userService=new UserServiceImpl();
-		boolean result=userService.checkDuplication(userId);
+		UserService userService = new UserServiceImpl();
+		boolean result = userService.checkDuplication(userId);
 		
 		request.setAttribute("result",new Boolean(result) );
 		request.setAttribute("userId", userId);
