@@ -11,10 +11,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/com.springsource.org.apache.commons.logging-1.1.1"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/com.springsource.org.apache.log4j-1.2.15"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jdbc-driver"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mybatis-3.2.1"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/spring-framework-4.0.9.RELEASE"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

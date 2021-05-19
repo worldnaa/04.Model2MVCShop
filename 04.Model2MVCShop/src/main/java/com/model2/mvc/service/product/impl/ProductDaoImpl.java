@@ -1,5 +1,6 @@
 package com.model2.mvc.service.product.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -37,20 +38,18 @@ public class ProductDaoImpl implements ProductDao {
 		return sqlSession.selectOne("ProductMapper.getProduct", prodNo);
 	}
 
-	@Override
-	public Map<String,Object> getProductList(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public void updateProduct(Product product) throws Exception {
 		sqlSession.update("ProductMapper.updateProduct", product);
 	}
+	
+	public List<Product> getProductList(Search search) throws Exception {
+		//ProductMapper.xml에서 sql을 날려 테이블에서 값을 가져오고, product에 저장 ==> 리턴
+		return sqlSession.selectList("ProductMapper.getProductList", search);
+	}
 
-	@Override
 	public int getTotalCount(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		//게시판 Page 처리를 위한 전체 Row(totalCount)  return
+		return sqlSession.selectOne("ProductMapper.getTotalCount", search);
 	}
 
 }

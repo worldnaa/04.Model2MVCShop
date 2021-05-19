@@ -12,7 +12,7 @@ public class Product {
 	private String prodName;   //상품명
 	private int prodNo;        //상품번호
 	private Date regDate;      //등록일자
-	private String proTranCode; 
+	private String proTranCode;//배송상태코드  
 	
 	///Constructor
 	public Product(){

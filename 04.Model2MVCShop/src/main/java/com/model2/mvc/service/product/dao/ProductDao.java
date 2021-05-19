@@ -15,6 +15,7 @@ import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.purchase.PurchaseService;
 import com.model2.mvc.service.purchase.impl.PurchaseServiceImpl;
 
+///////////////////////////////// 사용 안 함 //////////////////////////////////////////////////////
 public class ProductDao {
 	//Constructor
 	public ProductDao() {

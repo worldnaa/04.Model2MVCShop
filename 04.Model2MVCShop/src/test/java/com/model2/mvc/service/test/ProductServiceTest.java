@@ -24,6 +24,7 @@ public class ProductServiceTest {
 	@Autowired
 	@Qualifier("productServiceImpl")
 	private ProductService productService;
+	//==> ProductService productService = new productServiceImpl(); 과 같은 의미
 	
 	//@Test
 	public void testAddProduct() throws Exception {
@@ -97,41 +98,165 @@ public class ProductServiceTest {
 		product.setFileName("changeFileName");
 	 }
 	
-//	@Test
-//	public void testGetUserListAll() throws Exception{
-//		 
-//	 	Search search = new Search();
-//	 	search.setCurrentPage(1);
-//	 	search.setPageSize(3);
-//	 	Map<String,Object> map = userService.getUserList(search);
-//	 	
-//	 	List<Object> list = (List<Object>)map.get("list");
-//	 	Assert.assertEquals(3, list.size());
-//	 	
-//		//==> console 확인
-//	 	//System.out.println(list);
-//	 	
-//	 	Integer totalCount = (Integer)map.get("totalCount");
-//	 	System.out.println(totalCount);
-//	 	
-//	 	System.out.println("=======================================");
-//	 	
-//	 	search.setCurrentPage(1);
-//	 	search.setPageSize(3);
-//	 	search.setSearchCondition("0");
-//	 	search.setSearchKeyword("");
-//	 	map = userService.getUserList(search);
-//	 	
-//	 	list = (List<Object>)map.get("list");
-//	 	Assert.assertEquals(3, list.size());
-//	 	
-//	 	//==> console 확인
-//	 	//System.out.println(list);
-//	 	
-//	 	totalCount = (Integer)map.get("totalCount");
-//	 	System.out.println(totalCount);
-//	 }
+	//@Test
+	public void testGetProductListAll() throws Exception{
+		 
+	 	Search search = new Search();
+	 	search.setCurrentPage(1);
+	 	search.setPageSize(3);
+	 	Map<String,Object> map = productService.getProductList(search);//productServiceImpl 메서드 실행
+	 	
+	 	List<Object> list = (List<Object>)map.get("list");
+	 	//Assert.assertEquals(3, list.size());
+	 	
+		//==> console 확인
+	 	System.out.println("list 값 : "+list);
+	 	
+	 	Integer totalCount = (Integer)map.get("totalCount");
+	 	System.out.println(totalCount);
+	 	
+	 	System.out.println("=======================================");
+	 	
+	 	search.setCurrentPage(1);
+	 	search.setPageSize(3);
+	 	search.setSearchCondition("0");
+	 	search.setSearchKeyword("");
+	 	map = productService.getProductList(search);
+	 	
+	 	list = (List<Object>)map.get("list");
+	 	//Assert.assertEquals(3, list.size());
+	 	
+	 	//==> console 확인
+	 	System.out.println("list 값 : "+list);
+	 	
+	 	totalCount = (Integer)map.get("totalCount");
+	 	System.out.println(totalCount);
+	 }
 	
+	@Test
+	public void testGetProductListByProdNo() throws Exception{
+		System.out.println("=================== ProdNo() 테스트1 ====================");	 
+		Search search = new Search(); 	  //Search 클래스 인스턴스 생성
+		search.setCurrentPage(1); 		  //현재 페이지에 1 셋팅
+		search.setPageSize(3); 			  //페이지 사이즈에 3 셋팅
+		search.setSearchCondition("0");   //검색조건 0번 ==> ProdNo
+		search.setSearchKeyword("10002"); //검색 키워드 "10002" 셋팅
+		
+		//productServiceImpl.getProductList 실행 후, 결과값(리턴값)을 대입
+		//결과값(리턴값) - list, totalCount 담긴 map
+		Map<String,Object> map = productService.getProductList(search); //
+		System.out.println("map size : " + map.size());
+		
+		//map에 담긴 list를 List타입의 list에 대입
+		List<Object> list = (List<Object>) map.get("list");
+		System.out.println("list : " + list);
+		System.out.println("list size : " + list.size());
+		
+		Assert.assertEquals(1, list.size());
+		
+		//map에 담긴 totalCount를 Integer타입의 totalCount에 대입
+		Integer totalCount = (Integer)map.get("totalCount");
+		System.out.println("totalCount : " + totalCount);
+		 	
+		System.out.println("=================== ProdNo() 테스트2 ====================");
+		 	
+		search.setSearchCondition("0"); 						//검색조건 0번 ==> ProdNo
+		search.setSearchKeyword(""+System.currentTimeMillis()); //currentTimeMillis() : 현재 시간 (밀리 초)을 반환
+		map = productService.getProductList(search);	
+		System.out.println("map size : " + map.size());
+		
+		list = (List<Object>)map.get("list");
+		System.out.println("list : " + list);
+		System.out.println("list size : " + list.size());
+		
+		Assert.assertEquals(0, list.size());
+		 	 	
+		totalCount = (Integer)map.get("totalCount");
+		System.out.println("totalCount : " + totalCount);
+	}
+		 
+	//@Test
+	public void testGetProductListByProdName() throws Exception{
+		System.out.println("=================== ProdName() 테스트1 ====================");	 
+		Search search = new Search(); 	//Search 클래스 인스턴스 생성
+		search.setCurrentPage(1); 		//현재 페이지에 1 셋팅
+		search.setPageSize(3); 			//페이지 사이즈에 3 셋팅
+		search.setSearchCondition("1"); //검색조건 1번 ==> ProdName
+		search.setSearchKeyword("빨대"); //검색 키워드 "빨대" 셋팅
+		
+		//productServiceImpl.getProductList 실행 후, 결과값(리턴값)을 대입
+		//결과값(리턴값) - list, totalCount 담긴 map
+		Map<String,Object> map = productService.getProductList(search); //
+		System.out.println("map size : " + map.size());
+		
+		//map에 담긴 list를 List타입의 list에 대입
+		List<Object> list = (List<Object>) map.get("list");
+		System.out.println("list : " + list);
+		System.out.println("list size : " + list.size());
+		
+		Assert.assertEquals(1, list.size());
+		
+		//map에 담긴 totalCount를 Integer타입의 totalCount에 대입
+		Integer totalCount = (Integer)map.get("totalCount");
+		System.out.println("totalCount : " + totalCount);
+		 	
+		System.out.println("=================== ProdName() 테스트2 ====================");
+		 	
+		search.setSearchCondition("1"); 						//검색조건 1번 ==> ProdName
+		search.setSearchKeyword(""+System.currentTimeMillis()); //currentTimeMillis() : 현재 시간 (밀리 초)을 반환
+		map = productService.getProductList(search);	
+		System.out.println("map size : " + map.size()); 
+		
+		list = (List<Object>)map.get("list");
+		System.out.println("list : " + list);
+		System.out.println("list size : " + list.size());
+		
+		Assert.assertEquals(0, list.size());
+		 	 	
+		totalCount = (Integer)map.get("totalCount");
+		System.out.println("totalCount : " + totalCount);
+	}
 	
-
-}
+	//@Test
+	public void testGetProductListByPrice() throws Exception{
+		System.out.println("=================== Price() 테스트1 ====================");	 
+		Search search = new Search(); 	 //Search 클래스 인스턴스 생성
+		search.setCurrentPage(1); 		 //현재 페이지에 1 셋팅
+		search.setPageSize(3); 			 //페이지 사이즈에 3 셋팅
+		search.setSearchCondition("2");  //검색조건 2번 ==> Price
+		search.setSearchKeyword("5000"); //검색 키워드 "5000" 셋팅
+		
+		//productServiceImpl.getProductList 실행 후, 결과값(리턴값)을 대입
+		//결과값(리턴값) - list, totalCount 담긴 map
+		Map<String,Object> map = productService.getProductList(search); //
+		System.out.println("map size : " + map.size());
+		
+		//map에 담긴 list를 List타입의 list에 대입
+		List<Object> list = (List<Object>) map.get("list");
+		System.out.println("list : " + list);
+		System.out.println("list size : " + list.size());
+		
+		Assert.assertEquals(3, list.size());
+		
+		//map에 담긴 totalCount를 Integer타입의 totalCount에 대입
+		Integer totalCount = (Integer)map.get("totalCount");
+		System.out.println("totalCount : " + totalCount);
+		 	
+		System.out.println("=================== Price() 테스트2 ====================");
+		 	
+		search.setSearchCondition("2"); 						//검색조건 2번 ==> Price
+		search.setSearchKeyword(""+System.currentTimeMillis()); //currentTimeMillis() : 현재 시간 (밀리 초)을 반환
+		map = productService.getProductList(search);	
+		System.out.println("map size : " + map.size());
+		
+		list = (List<Object>)map.get("list");
+		System.out.println("list : " + list);
+		System.out.println("list size : " + list.size());
+		
+		Assert.assertEquals(0, list.size());
+		 	 	
+		totalCount = (Integer)map.get("totalCount");
+		System.out.println("totalCount : " + totalCount);
+	}
+	
+}//end of class

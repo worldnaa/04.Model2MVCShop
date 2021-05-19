@@ -3,7 +3,6 @@
 	<name>04.Model2MVCShop(Business Logic,MyBatis Spring)</name>
 	<comment></comment>
 	<projects>
-		<project>ojdbc14</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
